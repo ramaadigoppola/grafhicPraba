@@ -1,0 +1,36 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"  xmlns:viz="sap.viz.ui5.controls"
+     xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+		controllerName="com.kloudData.controller.home" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title">
+		<content>
+	<viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='pie'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/value}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Product Name"
+                                value="{ProductName}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="UnitsInStock"
+                                value="{UnitsInStock}" />
+                        </viz.data:measures>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="UnitsOnOrder"
+                                value="{UnitsOnOrder}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure"
+                        values="UnitsInStock" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="ProductName" />
+                </viz:feeds>
+            </viz:VizFrame>
+		</content>
+	</Page>
+</core:View>
